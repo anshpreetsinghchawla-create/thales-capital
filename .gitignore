@@ -1,0 +1,116 @@
+# ========================
+# Thales Open Quant .gitignore
+# For multi-language quant research repositories
+# Covers: Python, R, Julia, C++, JavaScript, data, and IDE files
+# ========================
+
+# --- General ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.out
+*.aux
+*.lock
+*.pid
+*.csv
+*.xlsx
+*.xls
+*.json
+*.parquet
+*.pkl
+*.h5
+*.feather
+*.zip
+*.gz
+*.tar
+*.7z
+
+# --- Jupyter / Notebooks ---
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.so
+.env
+.venv
+env/
+venv/
+ENV/
+Pipfile.lock
+poetry.lock
+
+# --- R ---
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+*.Rproj
+*.RDataTmp
+
+# --- Julia ---
+.julia/
+Manifest.toml
+Project.toml
+deps/
+docs/build/
+
+# --- C++ / C ---
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.lib
+*.a
+*.lo
+*.la
+build/
+cmake-build*/
+
+# --- JavaScript / TypeScript ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+dist/
+build/
+
+# --- Notebooks (Interactive / Streamlit / Dash) ---
+.streamlit/
+dash_cache/
+*.db
+*.sqlite3
+
+# --- Data / Models ---
+data/
+datasets/
+models/
+*.model
+*.sav
+*.pb
+*.onnx
+*.hdf5
+
+# --- IDEs & Editors ---
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.iml
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Misc / Temporary ---
+logs/
+cache/
+tmp/
+temp/
+__MACOSX/
