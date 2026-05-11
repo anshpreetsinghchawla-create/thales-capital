@@ -1,0 +1,32 @@
+I recently revisited the foundational Almgren-Chriss (2000) optimal execution framework and stress-tested one of its core assumptions: constant intraday volatility.
+
+It is an elegant model that balances market impact against price risk with a clean closed-form solution.
+But there is a problem.
+Markets do not exhibit constant volatility.
+Volatility clusters. It spikes around news events. It follows pronounced intraday patterns. In practice, execution takes place in a stochastic market microstructure, not a smooth one.
+
+The experiment
+I simulated a standard $50M liquidation problem involving 1 million shares over a one-day horizon and compared:
+The classic Almgren-Chriss model, which assumes fixed volatility (sigma)
+An extended model, where constant volatility is replaced with a mean-reverting CIR variance process, allowing the execution schedule to dynamically re-optimise using instantaneous variance.
+
+Results (calibrated to a 15 bps baseline)
+Classic Almgren-Chriss (Constant Volatility)
+• Expected Implementation Shortfall: 15.0 bps
+• IS Standard Deviation: 5.5 bps
+Stochastic Volatility Extension
+• Mean Implementation Shortfall: 15.5 bps
+• IS Standard Deviation: 93.0 bps
+
+Key insight:
+The expected execution cost changed very little.
+However, execution risk increased dramatically, with a 1,600 percent rise in cost variance.
+Why?
+When volatility spikes, the algorithm becomes more urgent and accelerates execution to reduce exposure. That urgency forces more aggressive crossing of the spread, increasing temporary market impact precisely when liquidity is most fragile.
+
+The standard Almgren-Chriss framework does not capture this dynamic.
+It optimizes for average market conditions.
+Real markets punish strategies in the tails.
+
+Takeaway: If your execution model assumes smooth volatility, it may be materially understating real-world execution risk.
+I would be interested to hear how others approach this problem.
