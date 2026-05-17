@@ -1,0 +1,35 @@
+AMK — Adaptive Momentum Kelly Position Sizer
+
+
+MOTIVATION
+
+Classic Kelly Criterion:  f* = (bp - q) / b
+    - Assumes stationary win/loss distribution (fatal in HFT/MFT)
+    - Over-bets in regime transitions → catastrophic drawdowns
+    - Ignores autocorrelation and serial dependency in returns
+    - No time-scale awareness; doesn't adapt to fill-latency risk
+    - Numerically unstable when b (payoff ratio) → 0 (micro-price moves)
+
+AMK FORMULA
+
+                   μ_α · SR_α
+    f_AMK = ─────────────────────── · V_α
+              σ_α² · (1 + λ · DD_α)
+
+Where:
+    μ_α   = EWMA of returns (fast decay α — adapts to current regime)
+    σ_α²  = EWMA of variance (same α)
+    SR_α  = rolling Sharpe ratio (regime quality filter)
+    DD_α  = current drawdown fraction (0 → no penalty, 1 → zeroed)
+    V_α   = volatility-regime scalar (compresses size in high-vol)
+    λ     = drawdown aversion coefficient (tunable, default 3.0)
+
+KEY IMPROVEMENTS OVER KELLY
+
+1. EWMA replaces sample mean → O(1) update, no lookback window
+2. Drawdown aversion (DD_α term) auto-reduces size in losing streaks
+3. Sharpe gate: f=0 when SR < threshold (avoids noise trading)
+4. Volatility scalar V_α: size ∝ 1/vol (position-sizing via vol budget)
+5. Hard fractional cap (max_f) replaces Kelly's theoretic ∞ risk
+6. Signed formula: works long AND short
+7. Computational cost: 5 multiplications per bar — viable at μs latency
