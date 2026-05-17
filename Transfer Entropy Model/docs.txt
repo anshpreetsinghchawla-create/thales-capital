@@ -1,0 +1,15 @@
+Uses information theory to map non-linear relationship between given assets
+Transfer Entropy measures the directional information flow between two stochastic process, which capture non linear relationships and asymmetric dependecies unlike correlation
+
+# Useful for identifying leading indicators across assets or sectors
+## Strat Example: Allocate more to assets with higher incoming information and reduce exposure in assets with low TE.
+### Useful in multi-asset portrfolios
+#### Detect directional risk in stress scenarios
+
+Assumptions:
+Stationarity over rolling windows
+Markov Assumption, first order TE assumes dependence on one Lag
+Use bias-corrected TE estimator
+
+Data_Prep.py
+used log returns since TE operates better on additive and stationary series
