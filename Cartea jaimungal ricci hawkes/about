@@ -1,0 +1,10 @@
+In high-frequency market making, assuming independent Poisson arrivals is a known recipe for stale quotes and adverse selection. In reality, trade arrivals exhibit self-excitation where a burst of buys triggers even more buys, and cross-excitation where aggressive buying eventually triggers defensive selling.
+
+I have been extending the work of Cartea, Jaimungal, and Ricci (2018) regarding optimal execution using bivariate Hawkes processes. The core takeaway is that during clustering events, a naive desk grossly underestimates fill rates and ignores a measurable short-term alpha signal.
+My research focuses on several original extensions to the base CJR model.
+ 
+First, I implemented asymmetric decay kernels. While the original paper assumes buy and sell excitation decay at the same rate, empirical evidence suggests buy-side clustering often persists longer. By allowing for independent decay parameters, the model achieves much higher precision in fill-rate estimation.
+
+Second, I replaced the constant baseline intensity with a Hidden Markov Model. This allows the executor to detect and adapt to calm versus active regimes in real-time. Finally, I integrated cross-asset spillover, where order flow from a correlated instrument feeds into the primary asset's baseline. This provides an early-warning signal of imminent clustering before it even appears in the primary instrument's own flow.
+
+The simulation results are compelling. Compared to naive Poisson strategies, this Hawkes-aware approach delivers a significant lift in Sharpe ratio and much tighter control over inventory risk during directional runs.
