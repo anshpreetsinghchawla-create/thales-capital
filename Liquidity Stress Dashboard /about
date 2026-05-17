@@ -1,0 +1,11 @@
+// To detect early liquidity stress in credit markets
+   and monitor whether and when that stress propogates into U.S.
+   Treasury markets and funding conditions
+
+// Relevant for FICC desk as a risk awareness tool
+
+// Architecture
+   Data - Liquidity Metrics - Stress Normalization - Lead Lag Analysis - Dashboard
+
+// Data Sources
+   Yahoo Finance, FRED, 
