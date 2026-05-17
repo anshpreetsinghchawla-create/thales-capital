@@ -1,0 +1,16 @@
+The classic Avellaneda-Stoikov (2008) framework provides an elegant theoretical foundation for optimal market making. However, deploying the closed-form solutions (Guéant, Lehalle, Fernandez-Tapia, 2012) in live microstructure environments quickly reveals structural vulnerabilities, primarily due to the baseline assumptions of constant volatility and uninformed order flow.
+
+To bridge the gap between textbook dynamics and the reality of modern equity and crypto order books, I recently built the base AS model and introduced three practical extensions to handle adverse selection and regime shifts:
+
+1. Dynamic Volatility via GARCH(1,1): Replacing the static sigma parameter with an online variance estimator. This allows the model to continuously recalibrate its reservation price and spread, reacting instantly to volatility shocks rather than relying on historical averages.
+
+2. OFI Adverse-Selection Filter: Assuming uniform flow is a costly mistake. I integrated an Order Flow Imbalance (OFI) tracker to proxy informed flow. When toxicity thresholds are breached, the quoting logic becomes asymmetric, widening on the toxic side to defend the book and tightening on the opposite side to clear risk.
+
+3. Asymptotic Inventory Skew: Unconstrained models fail under rigid risk limits. I introduced a penalty function that scales the reservation price skew as inventory approaches the desk's hard limits, strongly discouraging the accumulation of concentrated positions.
+
+To validate the framework, I ran a 600-path Monte Carlo stress test, injecting a severe volatility shift alongside highly toxic, directional flow. Compared to the base model, the adaptive extension demonstrated:
+a. A material reduction in end-of-day inventory variance.
+b. Substantially improved left-tail (5th-percentile) P&L, effectively mitigating the drawdowns that cascade in the base model during toxic intervals.
+c. A structurally higher session Sharpe ratio due to the asymmetric defense mechanism.
+
+Theoretical elegance is a prerequisite, but empirical robustness dictates survival in the order book. I have attached a simulation visual comparing the base and extended models under stress.
