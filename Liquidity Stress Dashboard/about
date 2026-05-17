@@ -1,0 +1,4 @@
+Built a dashboard to replicate how a FICC desk frames risk before taking duration or curve exposure.
+
+The focus is not forecasting, but identifying when moves in the 10Y and key curve spreads (3m10y, 5s10s, 10s30s) are coherent, accelerating, or breaking down. A rolling heatmap and a single curve acceleration score make it clear whether the market is repricing policy, term premium, or transitioning regimes.
+This is the type of tool used to decide when to press risk, when to step back, and when relative value is safer than direction.
