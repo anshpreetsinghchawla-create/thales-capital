@@ -1,0 +1,7 @@
+Built a dynamic 3D Systemic Contagion Surface using rolling market data to visualize how cross-asset stress evolves through time.
+
+Instead of looking at correlations or vol in isolation, I modeled contagion as an evolving interaction energy surface across assets where peaks represent concentrated systemic pressure and valleys represent dispersion.
+
+Each frame shows how strongly assets are moving together. Tall peaks mean stress is building in certain areas of the market. 
+
+What’s interesting is how stress doesn’t rise uniformly, it localizes, spreads, collapses, then reforms, something you can’t see from a simple correlation table.
